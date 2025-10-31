@@ -1,0 +1,6 @@
+﻿Padre,Hijo,Hijo,Hijo
+Study, , , 
+Sleep,Study, , 
+Clever, , , 
+Grade,Study,Sleep,Clever
+, ,,
