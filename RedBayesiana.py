@@ -24,12 +24,6 @@ def cargar_grafo(ruta_archivo):
     return G
 
 def mostrar_grafo(grafo, titulo="Red Bayesiana - Dependencias"):
-    """
-    Dibuja en pantalla el grafo de la red bayesiana con formato visual claro.
-    Parámetros:
-        grafo: objeto networkx.DiGraph() con las relaciones cargadas.
-        titulo: texto del título mostrado sobre el gráfico.
-    """
     plt.figure(figsize=(6, 4))
     pos = nx.spring_layout(grafo, seed=42)
     nx.draw(
@@ -45,5 +39,5 @@ def mostrar_grafo(grafo, titulo="Red Bayesiana - Dependencias"):
     plt.show()
     
 # === Crear y dibujar el grafo ===
-grafo = cargar_grafo(r"C:\Users\bibliotecapuj\Desktop\IA\proyecto_3_IA\Dependencias.csv")
+grafo = cargar_grafo(r"C:\Users\mejia\OneDrive\Escritorio\U\5to Semestre\Intro IA\Proyectos\proyecto_3_IA\Dependencias.csv")
 mostrar_grafo(grafo)

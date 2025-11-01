@@ -1,13 +1,18 @@
-﻿Rain,Maintenance,Train,P
-none,yes,On time,0.8
-none,yes,Delayed,0.2
-none,no,On time,0.9
-none,no,Delayed,0.1
-light,yes,On time,0.6
-light,yes,Delayed,0.4
-light,no,On time,0.7
-light,no,Delayed,0.3
-heavy,yes,On time,0.4
-heavy,yes,Delayed,0.6
-heavy,no,On time,0.5
-heavy,no,Delayed,0.5
+﻿Train,Rain,Maintenance,P,
+On time,No rain,yes,0.8,
+Delayed,No rain,yes,0.2,
+On time,No rain,no,0.9,
+Delayed,No rain,no,0.1,
+On time,Light,yes,0.6,
+Delayed,Light,yes,0.4,
+On time,Light,no,0.7,
+Delayed,Light,no,0.3,
+On time,Heavy,yes,0.4,
+Delayed,Heavy,yes,0.6,
+On time,Heavy,no,0.5,
+Delayed,Heavy,no,0.5,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,

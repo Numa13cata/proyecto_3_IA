@@ -1,6 +1,4 @@
-﻿Padre,Hijo,Hijo,Hijo
-Study, , , 
-Sleep,Study, , 
-Clever, , , 
-Grade,Study,Sleep,Clever
-, ,,
+﻿Padre,Hijo,Hijo2,Hijo3
+Rain,Maintenance,Train,
+Maintenance,Train,,
+Train,Appointment,,

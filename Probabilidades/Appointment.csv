@@ -1,5 +1,5 @@
-﻿Train,Appointment,P
-on time,yes,0.9
-on time,no,0.1
-delayed,yes,0.6
-delayed,no,0.4
+﻿Appointment,Train,P
+yes,On time,0.9
+no,On time,0.1
+yes,Delayed,0.6
+no,Delayed,0.4
