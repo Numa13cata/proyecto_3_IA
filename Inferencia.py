@@ -87,58 +87,80 @@ def obtener_orden_topologico(grafo):
 
 def inferencia_por_enumeracion(variable, evidencia, grafo, cpts, dominios):
     """
-    Pso 3: Implementar el algoritmo de inferencia por enumeración.
+    Ejecuta la inferencia por enumeración y genera una traza paso a paso.
     """
-    # Obtener las variables en orden topológico (padres antes que hijos)
+    # Limpiar la traza anterior
+    open("traza_inferencia.txt", "w").close()
+
+    registrar_traza(f"\n=== INICIO DE LA INFERENCIA POR ENUMERACIÓN ===")
+    registrar_traza(f"Variable objetivo: {variable}")
+    registrar_traza(f"Evidencia inicial: {evidencia}\n")
+
     orden = list(nx.topological_sort(grafo))
-    
-    # Diccionario para almacenar los resultados no normalizados
     resultados = {}
 
     # Para cada valor posible de la variable objetivo
     for valor in dominios[variable]:
-        # Copiamos la evidencia actual y agregamos la hipótesis variable=valor
         e_extendida = evidencia.copy()
         e_extendida[variable] = valor
+        registrar_traza(f"\n→ Evaluando hipótesis: {variable} = {valor}")
+        prob = enumerar_todo(orden, e_extendida, grafo, cpts, dominios, nivel=1)
+        registrar_traza(f"Resultado parcial para {variable}={valor}: {prob:.6f}\n")
+        resultados[valor] = prob
 
-        # Llamamos a la función recursiva que evalúa toda la red
-        resultados[valor] = enumerar_todo(orden, e_extendida, grafo, cpts, dominios)
-    
-    # Normalizamos los resultados para que sumen 1
+    # Normalizar resultados
     total = sum(resultados.values())
     for k in resultados:
         resultados[k] /= total
 
+    registrar_traza(f"=== RESULTADOS NORMALIZADOS ===")
+    for val, prob in resultados.items():
+        registrar_traza(f"P({variable}={val} | evidencia) = {prob:.4f}")
+
+    registrar_traza(f"\n=== FIN DE LA INFERENCIA ===\n")
     return resultados
 
-def enumerar_todo(variables, evidencia, grafo, cpts, dominios):
-    """
-    Paso 4: Enumerar todas las combinaciones posibles de variables ocultas.
-    Si una variable está en la evidencia, se multiplica.
-    Si no está, se suman todos sus posibles valores.
-    """
-    # Caso base: sin variables, retornar 1
+
+def enumerar_todo(variables, evidencia, grafo, cpts, dominios, nivel=0):
+    # Caso base: sin variables, retornamos 1
     if not variables:
         return 1.0
 
-    # Tomar la primera variable de la lista
     Y = variables[0]
     resto = variables[1:]
     padres = list(grafo.predecessors(Y))
+    indent = "   " * nivel  # sangría visual
 
-    # Calcular P(Y | padres) según la evidencia actual
+    # Si la variable tiene un valor conocido (evidencia)
     if Y in evidencia:
         prob = obtener_probabilidad(Y, evidencia[Y], evidencia, cpts, padres)
-        return prob * enumerar_todo(resto, evidencia, grafo, cpts, dominios)
+        if padres:
+            registrar_traza(f"{indent}Usando evidencia: P({Y}={evidencia[Y]} | {', '.join([f'{p}={evidencia[p]}' for p in padres])}) = {prob}")
+        else:
+            registrar_traza(f"{indent}Usando evidencia: P({Y}={evidencia[Y]}) = {prob}")
+        return prob * enumerar_todo(resto, evidencia, grafo, cpts, dominios, nivel + 1)
+
+    # Si la variable NO está en la evidencia (hay que sumar sobre sus valores posibles)
     else:
-        # Si Y no está observada, sumamos sobre todos sus posibles valores
         total = 0
+        registrar_traza(f"{indent}Enumerando posibles valores de {Y}: {dominios[Y]}")
         for valor in dominios[Y]:
             nueva_evidencia = evidencia.copy()
             nueva_evidencia[Y] = valor
             prob = obtener_probabilidad(Y, valor, nueva_evidencia, cpts, padres)
-            total += prob * enumerar_todo(resto, nueva_evidencia, grafo, cpts, dominios)
+            if padres:
+                registrar_traza(f"{indent}   Caso {Y}={valor}: P({Y}={valor} | {', '.join([f'{p}={nueva_evidencia[p]}' for p in padres])}) = {prob}")
+            else:
+                registrar_traza(f"{indent}   Caso {Y}={valor}: P({Y}={valor}) = {prob}")
+
+            subtotal = prob * enumerar_todo(resto, nueva_evidencia, grafo, cpts, dominios, nivel + 1)
+            registrar_traza(f"{indent}   Resultado parcial para {Y}={valor}: {subtotal:.5f}")
+            total += subtotal
+
+        registrar_traza(f"{indent}Suma total de {Y} = {total:.5f}\n")
         return total
+
+
     
 def obtener_probabilidad(var, valor, evidencia, cpts, padres):
     """
@@ -163,6 +185,13 @@ def normalizar(distribucion):
     total = sum(distribucion.values())
     return {k: v / total for k, v in distribucion.items()}
 
+def registrar_traza(mensaje, archivo="traza_inferencia.txt"):
+    """
+    Guarda un mensaje en un archivo de texto y lo muestra en consola.
+    """
+    print(mensaje)
+    with open(archivo, "a", encoding="utf-8") as f:
+        f.write(mensaje + "\n")
 
 # === Cargar las tablas de probabilidad condicional (CPTs) ===
 ruta_cpts = r"C:\Users\mejia\OneDrive\Escritorio\U\5to Semestre\Intro IA\Proyectos\proyecto_3_IA\Probabilidades"

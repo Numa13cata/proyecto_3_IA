@@ -1,0 +1,41 @@
+
+=== INICIO DE LA INFERENCIA POR ENUMERACIÓN ===
+Variable objetivo: Appointment
+Evidencia inicial: {'Maintenance': 'yes', 'Rain': 'Light'}
+
+
+→ Evaluando hipótesis: Appointment = yes
+   Usando evidencia: P(Rain=Light) = 0.2
+      Usando evidencia: P(Maintenance=yes | Rain=Light) = 0.2
+         Enumerando posibles valores de Train: ['On time', 'Delayed']
+            Caso Train=On time: P(Train=On time | Rain=Light, Maintenance=yes) = 0.6
+            Usando evidencia: P(Appointment=yes | Train=On time) = 0.9
+            Resultado parcial para Train=On time: 0.54000
+            Caso Train=Delayed: P(Train=Delayed | Rain=Light, Maintenance=yes) = 0.4
+            Usando evidencia: P(Appointment=yes | Train=Delayed) = 0.6
+            Resultado parcial para Train=Delayed: 0.24000
+         Suma total de Train = 0.78000
+
+Resultado parcial para Appointment=yes: 0.031200
+
+
+→ Evaluando hipótesis: Appointment = no
+   Usando evidencia: P(Rain=Light) = 0.2
+      Usando evidencia: P(Maintenance=yes | Rain=Light) = 0.2
+         Enumerando posibles valores de Train: ['On time', 'Delayed']
+            Caso Train=On time: P(Train=On time | Rain=Light, Maintenance=yes) = 0.6
+            Usando evidencia: P(Appointment=no | Train=On time) = 0.1
+            Resultado parcial para Train=On time: 0.06000
+            Caso Train=Delayed: P(Train=Delayed | Rain=Light, Maintenance=yes) = 0.4
+            Usando evidencia: P(Appointment=no | Train=Delayed) = 0.4
+            Resultado parcial para Train=Delayed: 0.16000
+         Suma total de Train = 0.22000
+
+Resultado parcial para Appointment=no: 0.008800
+
+=== RESULTADOS NORMALIZADOS ===
+P(Appointment=yes | evidencia) = 0.7800
+P(Appointment=no | evidencia) = 0.2200
+
+=== FIN DE LA INFERENCIA ===
+
