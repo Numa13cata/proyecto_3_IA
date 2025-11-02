@@ -1,0 +1,9 @@
+Pass,Exam,Anxiety,P
+Yes,Good,Low,0.95
+No,Good,Low,0.05
+Yes,Good,High,0.85
+No,Good,High,0.15
+Yes,Bad,Low,0.4
+No,Bad,Low,0.6
+Yes,Bad,High,0.2
+No,Bad,High,0.8

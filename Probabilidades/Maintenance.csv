@@ -1,0 +1,7 @@
+﻿Maintenance,Rain,P
+yes,No rain,0.4
+no,No rain,0.6
+yes,Light,0.2
+no,Light,0.8
+yes,Heavy,0.1
+no,Heavy,0.9
