@@ -194,8 +194,8 @@ def registrar_traza(mensaje, archivo="traza_inferencia.txt"):
         f.write(mensaje + "\n")
 
 # === Cargar las tablas de probabilidad condicional (CPTs) ===
-ruta_cpts = r"C:\Users\mejia\OneDrive\Escritorio\U\5to Semestre\Intro IA\Proyectos\proyecto_3_IA\Probabilidades"
-grafo = cargar_grafo(r"C:\Users\mejia\OneDrive\Escritorio\U\5to Semestre\Intro IA\Proyectos\proyecto_3_IA\Dependencias.csv")
+ruta_cpts = r"C:\Users\Catalina\OneDrive\Escritorio\proyecto_3_IA\Probabilidades"
+grafo = cargar_grafo(r"C:\Users\Catalina\OneDrive\Escritorio\proyecto_3_IA\Dependencias_Estudiantes.csv")
 cpts = cargar_cpts(ruta_cpts)
 
 # === Generar los dominios automáticamente ===

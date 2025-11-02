@@ -1,0 +1,17 @@
+Exam,Study,Intelligence,Sleep,P
+Good,Yes,High,Good,0.9
+Bad,Yes,High,Good,0.1
+Good,Yes,High,Poor,0.8
+Bad,Yes,High,Poor,0.2
+Good,Yes,Low,Good,0.75
+Bad,Yes,Low,Good,0.25
+Good,Yes,Low,Poor,0.6
+Bad,Yes,Low,Poor,0.4
+Good,No,High,Good,0.7
+Bad,No,High,Good,0.3
+Good,No,High,Poor,0.6
+Bad,No,High,Poor,0.4
+Good,No,Low,Good,0.5
+Bad,No,Low,Good,0.5
+Good,No,Low,Poor,0.3
+Bad,No,Low,Poor,0.7

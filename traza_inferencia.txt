@@ -1,41 +1,71 @@
 
 === INICIO DE LA INFERENCIA POR ENUMERACIÓN ===
-Variable objetivo: Appointment
-Evidencia inicial: {'Maintenance': 'yes', 'Rain': 'Light'}
+Variable objetivo: Exam
+Evidencia inicial: {'Intelligence': 'High', 'Sleep': 'Good', 'Anxiety': 'High'}
 
 
-→ Evaluando hipótesis: Appointment = yes
-   Usando evidencia: P(Rain=Light) = 0.2
-      Usando evidencia: P(Maintenance=yes | Rain=Light) = 0.2
-         Enumerando posibles valores de Train: ['On time', 'Delayed']
-            Caso Train=On time: P(Train=On time | Rain=Light, Maintenance=yes) = 0.6
-            Usando evidencia: P(Appointment=yes | Train=On time) = 0.9
-            Resultado parcial para Train=On time: 0.54000
-            Caso Train=Delayed: P(Train=Delayed | Rain=Light, Maintenance=yes) = 0.4
-            Usando evidencia: P(Appointment=yes | Train=Delayed) = 0.6
-            Resultado parcial para Train=Delayed: 0.24000
-         Suma total de Train = 0.78000
+→ Evaluando hipótesis: Exam = Good
+   Usando evidencia: P(Anxiety=High) = 0.5
+      Usando evidencia: P(Intelligence=High) = 0.3
+         Usando evidencia: P(Sleep=Good) = 0.6
+            Enumerando posibles valores de Study: ['Yes', 'No']
+               Caso Study=Yes: P(Study=Yes | Anxiety=High) = 0.4
+               Usando evidencia: P(Exam=Good | Intelligence=High, Sleep=Good, Study=Yes) = 0.9
+                  Enumerando posibles valores de Pass: ['Yes', 'No']
+                     Caso Pass=Yes: P(Pass=Yes | Anxiety=High, Exam=Good) = 0.85
+                     Resultado parcial para Pass=Yes: 0.85000
+                     Caso Pass=No: P(Pass=No | Anxiety=High, Exam=Good) = 0.15
+                     Resultado parcial para Pass=No: 0.15000
+                  Suma total de Pass = 1.00000
 
-Resultado parcial para Appointment=yes: 0.031200
+               Resultado parcial para Study=Yes: 0.36000
+               Caso Study=No: P(Study=No | Anxiety=High) = 0.6
+               Usando evidencia: P(Exam=Good | Intelligence=High, Sleep=Good, Study=No) = 0.7
+                  Enumerando posibles valores de Pass: ['Yes', 'No']
+                     Caso Pass=Yes: P(Pass=Yes | Anxiety=High, Exam=Good) = 0.85
+                     Resultado parcial para Pass=Yes: 0.85000
+                     Caso Pass=No: P(Pass=No | Anxiety=High, Exam=Good) = 0.15
+                     Resultado parcial para Pass=No: 0.15000
+                  Suma total de Pass = 1.00000
+
+               Resultado parcial para Study=No: 0.42000
+            Suma total de Study = 0.78000
+
+Resultado parcial para Exam=Good: 0.070200
 
 
-→ Evaluando hipótesis: Appointment = no
-   Usando evidencia: P(Rain=Light) = 0.2
-      Usando evidencia: P(Maintenance=yes | Rain=Light) = 0.2
-         Enumerando posibles valores de Train: ['On time', 'Delayed']
-            Caso Train=On time: P(Train=On time | Rain=Light, Maintenance=yes) = 0.6
-            Usando evidencia: P(Appointment=no | Train=On time) = 0.1
-            Resultado parcial para Train=On time: 0.06000
-            Caso Train=Delayed: P(Train=Delayed | Rain=Light, Maintenance=yes) = 0.4
-            Usando evidencia: P(Appointment=no | Train=Delayed) = 0.4
-            Resultado parcial para Train=Delayed: 0.16000
-         Suma total de Train = 0.22000
+→ Evaluando hipótesis: Exam = Bad
+   Usando evidencia: P(Anxiety=High) = 0.5
+      Usando evidencia: P(Intelligence=High) = 0.3
+         Usando evidencia: P(Sleep=Good) = 0.6
+            Enumerando posibles valores de Study: ['Yes', 'No']
+               Caso Study=Yes: P(Study=Yes | Anxiety=High) = 0.4
+               Usando evidencia: P(Exam=Bad | Intelligence=High, Sleep=Good, Study=Yes) = 0.1
+                  Enumerando posibles valores de Pass: ['Yes', 'No']
+                     Caso Pass=Yes: P(Pass=Yes | Anxiety=High, Exam=Bad) = 0.2
+                     Resultado parcial para Pass=Yes: 0.20000
+                     Caso Pass=No: P(Pass=No | Anxiety=High, Exam=Bad) = 0.8
+                     Resultado parcial para Pass=No: 0.80000
+                  Suma total de Pass = 1.00000
 
-Resultado parcial para Appointment=no: 0.008800
+               Resultado parcial para Study=Yes: 0.04000
+               Caso Study=No: P(Study=No | Anxiety=High) = 0.6
+               Usando evidencia: P(Exam=Bad | Intelligence=High, Sleep=Good, Study=No) = 0.3
+                  Enumerando posibles valores de Pass: ['Yes', 'No']
+                     Caso Pass=Yes: P(Pass=Yes | Anxiety=High, Exam=Bad) = 0.2
+                     Resultado parcial para Pass=Yes: 0.20000
+                     Caso Pass=No: P(Pass=No | Anxiety=High, Exam=Bad) = 0.8
+                     Resultado parcial para Pass=No: 0.80000
+                  Suma total de Pass = 1.00000
+
+               Resultado parcial para Study=No: 0.18000
+            Suma total de Study = 0.22000
+
+Resultado parcial para Exam=Bad: 0.019800
 
 === RESULTADOS NORMALIZADOS ===
-P(Appointment=yes | evidencia) = 0.7800
-P(Appointment=no | evidencia) = 0.2200
+P(Exam=Good | evidencia) = 0.7800
+P(Exam=Bad | evidencia) = 0.2200
 
 === FIN DE LA INFERENCIA ===
 

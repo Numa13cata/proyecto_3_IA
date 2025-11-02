@@ -39,5 +39,5 @@ def mostrar_grafo(grafo, titulo="Red Bayesiana - Dependencias"):
     plt.show()
     
 # === Crear y dibujar el grafo ===
-grafo = cargar_grafo(r"C:\Users\mejia\OneDrive\Escritorio\U\5to Semestre\Intro IA\Proyectos\proyecto_3_IA\Dependencias.csv")
+grafo = cargar_grafo(r"C:\Users\Catalina\OneDrive\Escritorio\proyecto_3_IA\Dependencias_Estudiantes.csv")
 mostrar_grafo(grafo)
